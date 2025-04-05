@@ -1,0 +1,359 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 40 33% 97%;
+    --foreground: 240 10% 3.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+
+    --primary: 43 89% 38%;
+    --primary-foreground: 0 0% 98%;
+
+    --secondary: 40 33% 90%;
+    --secondary-foreground: 240 5.9% 10%;
+
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 46.1%;
+
+    --accent: 43 89% 38%;
+    --accent-foreground: 240 5.9% 10%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+    --ring: 43 89% 38%;
+
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 220 40% 10%;
+    --foreground: 0 0% 98%;
+
+    --card: 220 40% 13%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 220 40% 13%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 43 89% 55%;
+    --primary-foreground: 220 40% 10%;
+
+    --secondary: 220 40% 17%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 220 40% 17%;
+    --muted-foreground: 240 5% 64.9%;
+
+    --accent: 43 89% 55%;
+    --accent-foreground: 0 0% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 220 40% 25%;
+    --input: 220 40% 25%;
+    --ring: 43 89% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "ss01", "ss02", "cv01", "cv02", "cv03";
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%23eca6a7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 3 7.07 16.97 2.51-7.39 7.39-2.51L3 3z"/></svg>') 0 0, auto;
+  }
+
+  html {
+    @apply scroll-smooth;
+  }
+  
+  h1, h2, h3, h4, h5 {
+    @apply font-heading font-medium tracking-tight;
+  }
+  
+  h6, p, span, div {
+    @apply font-serif;
+  }
+  
+  button, a {
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%23eca6a7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.31 8l5.74 9.94M9.69 8h11.48M7.38 12l5.74-9.94M9.69 16L3.95 6.06M14.31 16H2.83m13.79-4l-5.74 9.94"/></svg>') 12 12, pointer;
+  }
+}
+
+@layer utilities {
+  .glass-card {
+    @apply bg-white/10 backdrop-blur-lg border border-white/20 rounded-xl shadow-premium;
+  }
+  
+  .dark .glass-card {
+    @apply bg-black/20 backdrop-blur-lg border border-white/10;
+  }
+  
+  .premium-transition {
+    @apply transition-all duration-300 ease-out;
+  }
+  
+  .slide-enter {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  
+  .slide-enter-active {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 300ms, transform 300ms;
+  }
+  
+  .slide-exit {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  .slide-exit-active {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 300ms, transform 300ms;
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  .fade-up {
+    animation: fadeUp 0.6s ease-out forwards;
+  }
+  
+  .scale-in {
+    animation: scaleIn 0.5s ease-out forwards;
+  }
+  
+  .slide-right {
+    animation: slideRight 0.5s ease-out forwards;
+  }
+  
+  .bounce-in {
+    animation: bounceIn 0.6s cubic-bezier(0.215, 0.610, 0.355, 1.000) forwards;
+  }
+  
+  .float {
+    animation: float 3s ease-in-out infinite;
+  }
+  
+  .shimmer {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .shimmer::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    transform: translateX(-100%);
+    background-image: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0) 0,
+      rgba(255, 255, 255, 0.2) 20%,
+      rgba(255, 255, 255, 0.5) 60%,
+      rgba(255, 255, 255, 0)
+    );
+    animation: shimmer 2.5s infinite;
+  }
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes slideRight {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes bounceIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  20% {
+    transform: scale(1.1);
+  }
+  40% {
+    transform: scale(0.9);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(1.03);
+  }
+  80% {
+    transform: scale(0.97);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.skeleton {
+  @apply relative overflow-hidden bg-gray-100 dark:bg-gray-800 rounded;
+}
+
+.skeleton::after {
+  @apply absolute top-0 right-0 bottom-0 left-0 -translate-x-full;
+  background-image: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0,
+    rgba(255, 255, 255, 0.2) 20%,
+    rgba(255, 255, 255, 0.5) 60%,
+    rgba(255, 255, 255, 0)
+  );
+  animation: shimmer 2s infinite;
+  content: '';
+}
+
+.dark .skeleton::after {
+  background-image: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0) 0,
+    rgba(0, 0, 0, 0.2) 20%,
+    rgba(0, 0, 0, 0.5) 60%,
+    rgba(0, 0, 0, 0)
+  );
+}
+
+.image-hover-zoom {
+  @apply overflow-hidden;
+}
+
+.image-hover-zoom img {
+  @apply transition-transform duration-700 ease-out;
+}
+
+.image-hover-zoom:hover img {
+  @apply scale-105;
+}
+
+.page-enter {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.page-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 400ms, transform 400ms;
+}
+
+.page-exit {
+  opacity: 1;
+}
+
+.page-exit-active {
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: opacity 300ms, transform 300ms;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+.premium-bg {
+  background-image: radial-gradient(circle at 20% 20%, rgba(237, 189, 183, 0.05) 0%, transparent 40%),
+                    radial-gradient(circle at 80% 80%, rgba(0, 0, 0, 0.03) 0%, transparent 40%);
+}
+
+.product-card-enter {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.product-card-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 400ms, transform 400ms;
+}
+
+.product-image-transition {
+  transition: opacity 300ms ease-in-out, transform 500ms ease-out;
+}
+
+.premium-button {
+  @apply relative overflow-hidden bg-[#edbdb7] hover:bg-[#e9ada7] text-black py-3 px-6 rounded-lg 
+         transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-1;
+}
+
+.premium-button::after {
+  content: '';
+  @apply absolute top-0 left-0 w-full h-full bg-white opacity-0 transition-opacity duration-300;
+}
+
+.premium-button:hover::after {
+  @apply opacity-10;
+}
